@@ -1,0 +1,53 @@
+﻿@page
+@using TestRazorPages.Pages.Employees
+
+@model IndexModel
+
+
+<h2>Employees</h2>
+
+<a asp-page="Add">Add an Employee</a>
+
+<h3>@Model.Message</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Date of Birth
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Employee ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model.Employees)
+        {
+        <tr>
+            <td>
+                @(employee.FirstName + " " + employee.LastName)
+            </td>
+            <td>
+                @employee.DateOfBirth.ToShortDateString()
+            </td>
+            <td>
+                @employee.Gender.ToString()
+            </td>
+            <td>
+                @employee.ID
+            </td>
+            <td>
+                <a asp-page="Edit" asp-route-id="@employee.ID">Edit</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
